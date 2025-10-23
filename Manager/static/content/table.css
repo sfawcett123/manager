@@ -1,0 +1,33 @@
+.status {
+    border-collapse: separate; /* Allow spacing between cells */
+    border-spacing: 10px; /* Space between cells */
+    width: 400px;
+    height: 400px;
+    table-layout: fixed;
+}
+
+    .status td {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 10px;
+        padding: 5px;
+        border: none; /* Remove default border */
+    }
+
+        .status td:not(:empty) {
+            border: 1px solid #333;
+            box-shadow: 2px 2px 5px #888;
+        }
+
+
+.True {
+    background-color: green;
+    color: white;
+}
+
+.False {
+    background-color: red;
+    color: white;
+}

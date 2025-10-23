@@ -1,0 +1,31 @@
+{% block content %}
+
+<link href="../static/content/jumbotron.css" rel="stylesheet" />
+<link href="../static/content/table.css" rel="stylesheet" />
+
+<table id="status" class="status">
+    <tbody>
+        {% set cells = [] %}
+        {% for key, value in details.items() %}
+        {% set _ = cells.append('
+    <td class="' ~ value['Status'] ~ '">' ~ value['Name'] ~ '</td>') %}
+    {% endfor %}
+
+    {% for i in range(cells|length, 12) %}
+    {% set _ = cells.append('
+    <td></td>') %}
+    {% endfor %}
+
+    {% for cell in cells %}
+    {% if loop.index0 % 4 == 0 %}
+    <tr>
+        {% endif %}
+        {{ cell|safe }}
+        {% if loop.index0 % 4 == 3 %}
+    </tr>
+    {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

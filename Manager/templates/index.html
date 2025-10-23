@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link href="../static/content/jumbotron.css" rel="stylesheet" />
+<link href="../static/content/table.css" rel="stylesheet" />
+
+<div class="jumbotron">
+    <div class="jumbotron-content">
+        <h1>Flight Simulator Manager</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <h2>Status</h2>
+        {% include "table.html" %}
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+
+    {% endblock %}
