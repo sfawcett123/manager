@@ -1,4 +1,4 @@
-def register_views(app):
+def home(app):
     from flask import render_template
     import threading, time
     from datetime import datetime

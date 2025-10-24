@@ -1,9 +1,7 @@
-import redis
+from ..myredis import MyRedis as Redis
 import os
 
 GAME_SERVER="game.local"
-REDIS_SERVER="cache.local"
-REDIS_PORT=6379
 
 class CacheData:
     details={ "Redis":       {"Name": "Redis"      , "Status": False  },   
@@ -22,10 +20,10 @@ class CacheData:
        
        # Check Redis status
        try:
-           self.connection = redis.Redis(host=REDIS_SERVER, port=REDIS_PORT, db=0 , socket_connect_timeout=2 )
+           self.connection = Redis()
            if self.connection.ping():
               self.details["Redis"]["Status"] = True
-       except redis.ConnectionError:
+       except Redis.ConnectionError:
               self.details["Redis"]["Status"] = False
               return     
        # Check Application status
