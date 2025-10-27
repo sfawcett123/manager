@@ -25,7 +25,16 @@ class MyRedis:
             return False
 
     def getKey( self , key ):
-        value = self.client.get(key)
-        print(f"Key: {key} Value: {value}")
-        return value.decode('utf-8') if value else None
+        try:
+            value = self.client.get(key)
+            print(f"Key: {key} Value: {value}")
+            return value.decode('utf-8') if value else None
+        except:
+            return None
+
+    def keys( self , type = "*" ):
+        try:
+            return self.client.keys( type )
+        except:
+            return []
 
