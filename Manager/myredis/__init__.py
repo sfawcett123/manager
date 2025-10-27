@@ -1,6 +1,6 @@
 import redis
 
-REDIS_SERVER = "cache.local"
+REDIS_SERVER = "cache"
 REDIS_PORT = 6379
 
 class MyRedis:
@@ -27,7 +27,6 @@ class MyRedis:
     def getKey( self , key ):
         try:
             value = self.client.get(key)
-            print(f"Key: {key} Value: {value}")
             return value.decode('utf-8') if value else None
         except:
             return None

@@ -1,9 +1,10 @@
-def home(app):
-    from flask import render_template
-    import threading, time
-    from datetime import datetime
-    from Manager.models.cachedata import CacheData
-    from Manager import turbo
+from flask import render_template
+import threading, time
+from datetime import datetime
+from Manager.models.cachedata import CacheData
+from Manager import turbo
+
+def HomeRoutes(app):
 
     def start_background_thread():
         with app.app_context():
@@ -11,7 +12,7 @@ def home(app):
 
     @app.route('/')
     @app.route('/home')
-    def home():
+    def Home():
         start_background_thread()
         return render_template(
             'index.html',
@@ -23,9 +24,10 @@ def home(app):
     def UpdateStatusTable():
         with app.app_context():
             while True:
+                print("Update")
                 time.sleep(5)  ### we should let the thread tick every 5 seconds
                 turbo.push(turbo.replace(
-                    render_template('table.html',
+                    render_template('main.html',
                                     title='Home Page',
                                     details=CacheData().details,
                                     year=datetime.now().year),

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link href="../static/content/jumbotron.css" rel="stylesheet" />
+<link href="../static/content/redis.css" rel="stylesheet" />
+
+<p>&nbsp;</p>
+
+<form method="get" action="/simulator">
+    <label for="type">Select Type:</label>
+    <select name="type" id="type" onchange="this.form.submit()">
+        <option value="DATA" {% if request.args.get('type')=='DATA' %}selected{% endif %}>DATA</option>
+        <option value="SYSTEM" {% if request.args.get('type')=='SYSTEM' %}selected{% endif %}>SYSTEM</option>
+    </select>
+</form>
+
+<table id="redis" class="redis">
+    <tr><th>Key</th><th>Value</th></tr>
+    {% for k,v in data.items() %}
+    <tr><td>{{k}}</td><td>{{v}}</td></tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

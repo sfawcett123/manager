@@ -1,7 +1,8 @@
 from ..myredis import MyRedis as Redis
 import os
+import sys
 
-GAME_SERVER="game.local"
+GAME_SERVER="game"
 
 class CacheData:
     details={ "Redis":       {"Name": "Redis"      , "Status": False  },   
@@ -39,7 +40,8 @@ class CacheData:
            self.details["Simulator"]["Status"] = True
 
     def ping_server(self, host):
-        response = os.system(f"ping -n 1 {host}") 
+        command = "ping -n 1 " if sys.platform.lower()=="win32" else "ping -c 1 "
+        response = os.system(f"{command} {host}") 
         return response == 0
 
 
